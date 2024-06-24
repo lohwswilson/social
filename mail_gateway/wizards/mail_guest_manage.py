@@ -31,10 +31,10 @@ class MailGuestManage(models.TransientModel):
                 "gateway_token": self.guest_id.gateway_token,
             }
         )
-        for member in self.env["mail.channel.member"].search(
+        for member in self.env["
             [("guest_id", "=", self.guest_id.id)]
         ):
-            self.env["mail.channel.member"].create(
+            self.env[".member"].create(
                 self._channel_member_vals(member, partner)
             )
             member.unlink()

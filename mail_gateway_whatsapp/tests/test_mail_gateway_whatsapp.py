@@ -151,7 +151,7 @@ class TestMailGatewayTelegram(MailGatewayTestCase):
                 ).hexdigest()
             )
         self.url_open(
-            "/gateway/{}/{}/update".format(self.gateway.gateway_type, webhook),
+            f"/gateway/{self.gateway.gateway_type}/{webhook}/update",
             data=data,
             headers=headers_dict,
         )
@@ -161,7 +161,7 @@ class TestMailGatewayTelegram(MailGatewayTestCase):
         self.gateway.set_webhook()
         self.integrate_webhook()
         self.set_message(message, self.webhook)
-        chat = self.env["mail.channel"].search([("gateway_id", "=", self.gateway.id)])
+        chat = self.env["discuss.channel"].search([("gateway_id", "=", self.gateway.id)])
         self.assertTrue(chat)
         self.assertTrue(chat.message_ids)
         return chat.message_ids
@@ -198,7 +198,7 @@ class TestMailGatewayTelegram(MailGatewayTestCase):
         self.integrate_webhook()
         self.set_message(self.message_01, self.webhook, False)
         self.assertFalse(
-            self.env["mail.channel"].search([("gateway_id", "=", self.gateway.id)])
+            self.env["discuss.channel"].search([("gateway_id", "=", self.gateway.id)])
         )
 
     def test_post_wrong_signature_no_message(self):
@@ -218,12 +218,12 @@ class TestMailGatewayTelegram(MailGatewayTestCase):
             ),
         }
         self.url_open(
-            "/gateway/{}/{}/update".format(self.gateway.gateway_type, self.webhook),
+            f"/gateway/{self.gateway.gateway_type}/{self.webhook}/update",
             data=data,
             headers=headers,
         )
         self.assertFalse(
-            self.env["mail.channel"].search([("gateway_id", "=", self.gateway.id)])
+            self.env["discuss.channel"].search([("gateway_id", "=", self.gateway.id)])
         )
 
     def test_send_image(self):
@@ -239,7 +239,7 @@ class TestMailGatewayTelegram(MailGatewayTestCase):
             }
         )
         composer.action_view_whatsapp()
-        channel = self.env["mail.channel"].search(
+        channel = self.env["discuss.channel"].search(
             [("gateway_id", "=", self.gateway.id)]
         )
 
@@ -266,7 +266,7 @@ class TestMailGatewayTelegram(MailGatewayTestCase):
             }
         )
         composer.action_view_whatsapp()
-        channel = self.env["mail.channel"].search(
+        channel = self.env["discuss.channel"].search(
             [("gateway_id", "=", self.gateway.id)]
         )
         with mute_logger(
@@ -292,7 +292,7 @@ class TestMailGatewayTelegram(MailGatewayTestCase):
             }
         )
         composer.action_view_whatsapp()
-        channel = self.env["mail.channel"].search(
+        channel = self.env["discuss.channel"].search(
             [("gateway_id", "=", self.gateway.id)]
         )
         self.assertTrue(channel)

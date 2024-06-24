@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates xml:space="preserve">
 
-    <t
+    <!-- <t
         t-name="mail_gateway.Composer"
         t-inherit="mail.Composer"
         t-inherit-mode="extension"
@@ -20,5 +20,5 @@
             </t>
         </xpath>
 
-    </t>
+    </t> -->
 </templates>

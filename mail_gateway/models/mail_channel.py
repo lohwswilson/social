@@ -6,8 +6,8 @@ import base64
 from odoo import api, fields, models
 
 
-class MailChannel(models.Model):
-    _inherit = "mail.channel"
+class DiscussChannel(models.Model):
+    _inherit = "discuss.channel"
 
     gateway_channel_token = fields.Char()
     anonymous_name = fields.Char()  # Same field we will use on im_livechat
@@ -28,7 +28,7 @@ class MailChannel(models.Model):
 
     def channel_info(self):
         result = super().channel_info()
-        for record, item in zip(self, result):
+        for record, item in zip(self, result, strict=False):
             item["gateway"] = {
                 "id": record.gateway_id.id,
                 "name": record.gateway_id.name,
@@ -74,6 +74,6 @@ class MailChannel(models.Model):
         self.ensure_one()
         if self.channel_type == "gateway" and message.gateway_notification_ids:
             self.env[
-                "mail.gateway.{}".format(self.gateway_id.gateway_type)
+                f"mail.gateway.{self.gateway_id.gateway_type}"
             ]._update_content_after_hook(self, message)
         return super()._message_update_content_after_hook(message=message)

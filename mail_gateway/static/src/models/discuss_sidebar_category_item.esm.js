@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
-import {clear} from "@mail/model/model_field_command";
-import {registerPatch} from "@mail/model/model_core";
+import { clear } from "@mail/model/model_field_command";
+import { registerPatch } from "@mail/model/model_core";
 
 registerPatch({
     name: "DiscussSidebarCategoryItem",
@@ -10,7 +10,7 @@ registerPatch({
             compute() {
                 // We will use the avatar provied by the channel by default
                 if (this.channel.channel_type === "gateway") {
-                    return `/web/image/mail.channel/${this.channel.id}/avatar_128?unique=${this.channel.avatarCacheKey}`;
+                    return `/web/image/discuss.channel/${this.channel.id}/avatar_128?unique=${this.channel.avatarCacheKey}`;
                 }
                 return this._super();
             },

@@ -7,7 +7,7 @@ from odoo import fields, models
 class MailNotification(models.Model):
     _inherit = "mail.notification"
 
-    gateway_channel_id = fields.Many2one("mail.channel")
+    gateway_channel_id = fields.Many2one("discuss.channel")
     notification_type = fields.Selection(
         selection_add=[("gateway", "Gateway")], ondelete={"gateway": "cascade"}
     )
@@ -26,7 +26,7 @@ class MailNotification(models.Model):
 
     def _notification_format(self):
         result = super()._notification_format()
-        for record, formatted_value in zip(self, result):
+        for record, formatted_value in zip(self, result, strict=False):
             formatted_value["gateway_type"] = record.gateway_type
             formatted_value["channel_name"] = record.gateway_channel_id.name
         return result

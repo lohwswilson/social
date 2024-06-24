@@ -1,8 +1,8 @@
 /** @odoo-module **/
 
-import {attr, one} from "@mail/model/model_field";
-import {clear} from "@mail/model/model_field_command";
-import {registerPatch} from "@mail/model/model_core";
+import { attr, one } from "@mail/model/model_field";
+import { clear } from "@mail/model/model_field_command";
+import { registerPatch } from "@mail/model/model_core";
 
 registerPatch({
     name: "Message",
@@ -26,14 +26,14 @@ registerPatch({
             compute() {
                 if (
                     this.originThread &&
-                    this.originThread.model !== "mail.channel" &&
+                    this.originThread.model !== "discuss.channel" &&
                     this.gateway_type
                 ) {
                     return true;
                 }
                 if (
                     this.originThread &&
-                    this.originThread.model === "mail.channel" &&
+                    this.originThread.model === "discuss.channel" &&
                     this.gateway_type
                 ) {
                     return false;
@@ -60,9 +60,9 @@ registerPatch({
                 this.gateway_thread_data &&
                 Object.keys(this.gateway_thread_data).length > 0
             ) {
-                this.update({gatewayThread: this.gateway_thread_data});
+                this.update({ gatewayThread: this.gateway_thread_data });
             } else {
-                this.update({gatewayThread: clear()});
+                this.update({ gatewayThread: clear() });
             }
         },
     },

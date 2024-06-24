@@ -1,7 +1,7 @@
 /** @odoo-module **/
-import {clear} from "@mail/model/model_field_command";
-import {one} from "@mail/model/model_field";
-import {registerPatch} from "@mail/model/model_core";
+import { clear } from "@mail/model/model_field_command";
+import { one } from "@mail/model/model_field";
+import { registerPatch } from "@mail/model/model_core";
 
 registerPatch({
     name: "MessageActionList",
@@ -25,7 +25,7 @@ registerPatch({
                 if (
                     this.message.gateway_type &&
                     !this.message.gatewayThread &&
-                    this.message.originThread.model === "mail.channel"
+                    this.message.originThread.model === "discuss.channel"
                 ) {
                     return {};
                 }

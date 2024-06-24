@@ -1,7 +1,7 @@
 /** @odoo-module **/
 
-import {many, one} from "@mail/model/model_field";
-import {registerPatch} from "@mail/model/model_core";
+import { many, one } from "@mail/model/model_field";
+import { registerPatch } from "@mail/model/model_core";
 
 registerPatch({
     name: "Thread",
@@ -40,11 +40,11 @@ registerPatch({
         convertData(data) {
             var data2 = this._super(data);
             if (data.gateway_id) {
-                data2.gateway = {id: data.gateway_id};
+                data2.gateway = { id: data.gateway_id };
             }
             return data2;
         },
-        async searchGatewaysToOpen({limit, searchTerm, gateway_id}) {
+        async searchGatewaysToOpen({ limit, searchTerm, gateway_id }) {
             const domain = [
                 ["channel_type", "=", "gateway"],
                 ["name", "ilike", searchTerm],
@@ -52,7 +52,7 @@ registerPatch({
             ];
             const fields = ["channel_type", "name"];
             const channelsData = await this.messaging.rpc({
-                model: "mail.channel",
+                model: "discuss.channel",
                 method: "search_read",
                 kwargs: {
                     domain,

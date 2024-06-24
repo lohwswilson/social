@@ -17,12 +17,12 @@
         "views/mail_gateway.xml",
     ],
     "assets": {
-        "mail.assets_messaging": [
-            "mail_gateway_whatsapp/static/src/models/**/*.js",
-        ],
-        "web.assets_backend": [
-            "mail_gateway_whatsapp/static/src/components/**/*.xml",
-            "mail_gateway_whatsapp/static/src/components/**/*.js",
-        ],
+        # "mail.assets_messaging": [
+        #     "mail_gateway_whatsapp/static/src/models/**/*.js",
+        # ],
+        # "web.assets_backend": [
+        #     "mail_gateway_whatsapp/static/src/components/**/*.xml",
+        #     "mail_gateway_whatsapp/static/src/components/**/*.js",
+        # ],
     },
 }

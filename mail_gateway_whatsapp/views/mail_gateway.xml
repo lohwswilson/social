@@ -10,22 +10,22 @@
             <field name="webhook_user_id" position="after">
                 <field
                     name="whatsapp_security_key"
-                    attrs="{'invisible': [('gateway_type', '!=', 'whatsapp')]}"
+                    invisible="gateway_type != 'whatsapp'"
                 />
                 <field
                     name="whatsapp_from_phone"
-                    attrs="{'invisible': [('gateway_type', '!=', 'whatsapp')]}"
+                    invisible="gateway_type != 'whatsapp'"
                 />
                 <field
                     name="whatsapp_version"
-                    attrs="{'invisible': [('gateway_type', '!=', 'whatsapp')]}"
+                    invisible="gateway_type != 'whatsapp'"
                 />
             </field>
             <notebook position="inside">
                 <page
                     name="whatsapp"
                     string="Whatsapp configuration info"
-                    attrs="{'invisible': [('gateway_type', '!=', 'whatsapp')]}"
+                    invisible="gateway_type != 'whatsapp'"
                 >
                     <div>
                         <h2>First steps</h2>

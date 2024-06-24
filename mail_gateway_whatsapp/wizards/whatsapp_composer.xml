@@ -11,7 +11,7 @@
                 <group>
                     <field
                         name="gateway_id"
-                        attrs="{'invisible': [('find_gateway', '=', False)]}"
+                        invisible="find_gateway == False"
                     />
                     <field name="find_gateway" invisible="1" />
                     <field name="res_model" invisible="1" />

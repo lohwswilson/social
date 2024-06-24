@@ -31,7 +31,7 @@ class MailGuestManage(models.TransientModel):
                 "gateway_token": self.guest_id.gateway_token,
             }
         )
-        for member in self.env["
+        for member in self.env["channel.channel.member"].search(
             [("guest_id", "=", self.guest_id.id)]
         ):
             self.env[".member"].create(

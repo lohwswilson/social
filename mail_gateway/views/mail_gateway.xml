@@ -15,21 +15,20 @@
                             string="Integrate Webhook"
                             icon="fa-plug"
                             name="set_webhook"
-                            attrs="{'invisible': ['|', ('can_set_webhook', '=', False), ('integrated_webhook_state', '!=', False)]}"
+                            invisible="can_set_webhook == False or integrated_webhook_state != False"
                         />
                         <button
                             type="object"
                             string="Update Webhook"
                             name="update_webhook"
                             icon="fa-refresh"
-                            attrs="{'invisible': ['|', ('can_set_webhook', '=', False), ('integrated_webhook_state', '!=', 'integrated')]}"
-                        />
+                            invisible="can_set_webhook == False or integrated_webhook_state != 'integrated'"                        />
                         <button
                             type="object"
                             string="Remove Webhook"
                             name="remove_webhook"
                             icon="fa-remove"
-                            attrs="{'invisible': [('integrated_webhook_state', '=', False)]}"
+                            invisible="integrated_webhook_state == False"
                         />
                     </div>
                     <field name="can_set_webhook" invisible="1" />
